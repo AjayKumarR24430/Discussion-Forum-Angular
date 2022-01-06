@@ -1,0 +1,83 @@
+<div class="container-fluid h-100">
+    <div class="row mt-4 justify-content-center align-items-center h-auto">
+        <div class="col-lg-10">
+            <h2 class="text-center mb-4 alert alert-success">Register</h2>
+            <form (ngSubmit)="onSignup()" #f="ngForm">
+                <div class="form-group">
+                    <label for="username">Username:*</label>
+                    <input
+                        type="username"
+                        class="form-control"
+                        id="username"
+                        required
+                        ngModel
+                        name="username"
+                        minlength="4"
+                        maxlength="20"
+                        #username="ngModel"
+                    >
+                    <small *ngIf="!username.valid && username.touched" id="usernameHelp">Username should be from 4 to 20 characters.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:*</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        required
+                        ngModel
+                        name="password"
+                        minlength="6"
+                        maxlength="40"
+                        #password="ngModel">
+                    <small *ngIf="!password.valid && password.touched" id="passwordHelp">
+                        The password should be 6 to 40 characters long.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:*</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        ngModel
+                        name="email"
+                        required
+                        email
+                        maxlength="40"
+                        #email="ngModel">
+                    <small *ngIf="!email.valid && email.touched" id="emailHelp">Pass valid email address.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="firstName"
+                        ngModel
+                        name="firstName"
+                        maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="lastName"
+                        ngModel
+                        name="lastName"
+                        maxlength="30">
+                </div>
+                <span id="signupInfo">* - mandatory fields </span>
+                <div *ngIf="authService.loginOrEmailNotAvailable" class="alert alert-danger" role="alert">
+                    The user already exists!
+                </div>
+                <button type="submit" [disabled]="!isSendButtonActivated || !f.valid"
+                        class="btn btn-outline-success col-lg-3 mx-auto d-block mb-4 mt-3"> Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

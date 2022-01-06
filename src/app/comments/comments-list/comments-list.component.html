@@ -1,0 +1,27 @@
+<div *ngIf="commentDelete" style="color: green;">
+    Comment deleted successfully!
+</div>
+<h5 style="margin-bottom: 10px;">Comments:</h5>
+<hr style="margin-bottom: 5px;">
+<ul>
+<div *ngIf="comments.length == 0" style="margin-bottom: 20px;">
+    No Comments
+</div>
+<li *ngFor="let comment of comments" class="media mb-2">
+    <p attr.data-letters = "{{comment.user.username | shorterName}}"> <b>{{ comment.user.username }} </b>
+        <img class="btn btn-outline-danger float-right" *ngIf="currUsername == comment.user.username && authService.isAuthenticated()"  src="https://cdn4.iconfinder.com/data/icons/linecon/512/delete-512.png" width="42px"
+                (click)="onDeleteComment(comment.id)"/>
+    </p>
+    
+    <div  class="media-body">
+       
+        <div class="float-right">
+            <small class="text-muted">{{ comment.dateTimeOfComment | timeAgo}}</small>
+        </div>
+        <div class="row ml-0" style="margin-left: 12px; margin-top: 10px;">
+        {{ comment.content }} 
+        </div>       
+    </div>
+    <hr style="margin-top: 5px;">
+</li>
+</ul>

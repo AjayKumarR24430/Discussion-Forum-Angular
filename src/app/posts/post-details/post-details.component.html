@@ -1,0 +1,33 @@
+<div class="container-fluid h-100">
+    <div class="row mt-4 justify-content-center align-items-center h-auto">
+        <div class="col-lg-10">
+            <h1 class="mt-1">{{ post.title }}</h1>
+            <button *ngIf="isUserSame" class="btn btn-danger" (click)="onDeletePost()"
+                    routerLink="/posts-list" style="margin-right: 10px; margin-bottom: 10px; margin-top: 10px;">DELETE POST
+            </button>
+            <small id="author" class="form-text text-muted">@{{author}}</small>
+            <hr>
+            <img class="img-fluid rounded" src="{{ post.imageUrl }}" alt="">
+            <hr>
+            <p>{{ post.content }}</p>
+            <div class="text-right" style="margin-bottom: 10px;">
+                <button mat-raised-button color="primary" aria-pressed="false"
+                        [disabled]="!allowRate || !authService.isAuthenticated()"
+                        (click)="onRate(1)">Like
+                </button>
+                <button mat-raised-button color="warn" aria-pressed="false"
+                        [disabled]="!allowRate || !authService.isAuthenticated()"
+                        (click)="onRate(0)" style="margin-left: 10px;">Dislike
+                </button>
+            </div>
+            <span *ngIf="!allowRate" class="float-right mt-1">Voted!</span>
+            <div class="text-left">
+                <button *ngIf="authService.isAuthenticated() && isUserSame" type="button" class="btn btn-light"
+                        [routerLink]="['/posts/edit/',post.id]">Edit Post
+                </button>
+            </div>
+            <hr>
+            <app-comments></app-comments>
+        </div>
+    </div>
+</div>

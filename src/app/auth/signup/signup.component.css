@@ -1,0 +1,21 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container > * {
+    width: 100%;
+}
+
+#signupInfo {
+    font-size: 10pt;
+}
+
+#usernameHelp, #passwordHelp, #emailHelp {
+    color: red;
+    font-style: italic;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid #e8221d;
+}

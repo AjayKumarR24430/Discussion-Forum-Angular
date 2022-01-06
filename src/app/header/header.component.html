@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <a style="margin-left: 20px;" class="navbar-brand mb-0 h1" id="brand">Discussion Forum</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a style="margin-left: 20px;" class="nav-link" routerLink="/posts-list">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" routerLinkActive="active">
+                <a  class="nav-link" routerLink="/posts-add">Add Posts</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-2">
+            <ng-template [ngIf]="!authService.isAuthenticated()">
+                <li class="nav-item" routerLinkActive="active">
+                    <a  class="nav-link" routerLink="/signup">Registration</a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" routerLink="/signin">Login</a>
+                </li>
+            </ng-template>
+            <ng-template
+                [ngIf]="authService.isAuthenticated()">
+                <li class="nav-item" routerLinkActive="active">
+                    <a  class="nav-link" style="cursor: pointer;" (click)="logoutUser()">Log out</a>
+                </li>
+            </ng-template>
+        </ul>
+        <form style="margin-right: 40px;" class="form-inline my-2 my-lg-0" (ngSubmit)="onSearchPost()" #f="ngForm">
+            <input class="form-control mr-sm-2"
+                   style="margin-bottom:5px;" 
+                   type="search"
+                   placeholder="Type Post Title..."
+                   ngModel
+                   name="searchData">
+            <button style="float: right;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>

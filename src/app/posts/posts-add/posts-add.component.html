@@ -1,0 +1,199 @@
+<div class="container-fluid h-100">
+    <div class="row mt-4 justify-content-center align-items-center h-auto">
+        <div class="col-lg-10">
+            <form (ngSubmit)="onAddPost(fileInput.files)" #f="ngForm">
+                <h2 class="text-center mb-4 alert alert-secondary">Add post</h2>
+                <div id="post-data">
+                    <div style="margin-top: 10px;">
+                        <label for="title" class="font-weight-bold">Title:</label>
+                        <input
+                            style="margin-top: 10px;"
+                            type="text"
+                            class="form-control font-weight-bold"
+                            id="title"
+                            required
+                            ngModel
+                            name="title">
+                    </div>
+                    <div class="form-group mt-4" style="margin-top: 10px;">
+                        <label for="content" class="font-weight-bold">Content:</label>
+                        <textarea
+                            style="margin-top: 10px;"
+                            class="form-control"
+                            id="content"
+                            rows="12"
+                            required
+                            ngModel
+                            name="content"></textarea>
+                    </div>
+
+                    <label for="categories"
+                           class="row h-auto font-weight-bold"
+                           style="margin-top: 10px; margin-left: 2px;">
+                        Choose Categories:</label>
+                    <div id="categories"
+                         class="row mt-4 justify-content-center h-auto mb-4"
+                         ngModelGroup="categories"
+                         name="categories"
+                         >
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="celebrity"
+                                    ngModel
+                                    name="celebrity"
+                                >Celebrities
+                                </mat-checkbox>
+
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="animal"
+                                    ngModel
+                                    name="animal">Animals
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="people"
+                                    ngModel
+                                    name="people">People
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="curiosity"
+                                    ngModel
+                                    name="curiosity">Curiosity
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="interestingPlace"
+                                    ngModel
+                                    name="interestingPlace">Interesting Place
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="funny"
+                                    ngModel
+                                    name="funny">Funny
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 31px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="nature"
+                                    ngModel
+                                    name="nature">Nature
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 8px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="science"
+                                    ngModel
+                                    name="science">Science
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: -6px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="art"
+                                    ngModel
+                                    name="art">Art
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 40px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="movie"
+                                    ngModel
+                                    name="movie">Film
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="fashion"
+                                    ngModel
+                                    name="fashion">Fashion
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 19px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="sale"
+                                    ngModel
+                                    name="sale">Sale
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 23px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="music"
+                                    ngModel
+                                    name="music">Music
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 9px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="culture"
+                                    ngModel
+                                    name="culture">Culture
+                                </mat-checkbox>
+                            </div>
+                            <div class="form-check form-check-inline" style="margin-left: 10px;">
+                                <mat-checkbox
+                                    color="primary"                                    
+                                    type="checkbox"
+                                    id="sport"
+                                    ngModel
+                                    name="sport">Sport
+                                </mat-checkbox>
+                            </div>
+                        </div>                       
+                    </div>
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label for="imagePost" class="font-weight-light">Choose an image file (max 1 MB)</label>
+                        &nbsp;
+                        <input type="file" class="form-control-file" id="imagePost" accept="image/*" #fileInput
+                               required>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-outline-primary btn-lg col-lg-3 mx-auto d-block mb-4"
+                        style="margin-top: 20px;"
+                        [disabled]="!f.valid">Add post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
