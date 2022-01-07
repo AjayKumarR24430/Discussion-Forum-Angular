@@ -12,12 +12,12 @@
                     class="media mb-2 mt-2 ml-2 mr-2 mr-4"
                     [routerLink]="['/posts/', post.id]">
                     <figure class="figure mb-0">
-                        <img
+                        <img *ngIf="post.imageUrl"
                             style="margin-bottom: 20px; margin-top: 5px;"
                             class="mr-4 rounded" width="600px"
                             src="{{ post.imageUrl }}"
                             alt="{{ post.title }}">
-                        <figcaption class="figure-caption text-center">{{ post.categories | categoriesFormat}}
+                        <figcaption class="figure-caption" style="margin-left: -10px;">{{ post.categories | categoriesFormat}}
                         </figcaption>
                     </figure>
                     <div class="media-body">

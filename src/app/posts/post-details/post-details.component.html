@@ -2,7 +2,7 @@
     <div class="row mt-4 justify-content-center align-items-center h-auto">
         <div class="col-lg-10">
             <h1 class="mt-1">{{ post.title }}</h1>
-            <button *ngIf="isUserSame" class="btn btn-danger" (click)="onDeletePost()"
+            <button *ngIf="isUserSame && authService.isAuthenticated()" class="btn btn-danger" (click)="onDeletePost()"
                     routerLink="/posts-list" style="margin-right: 10px; margin-bottom: 10px; margin-top: 10px;">DELETE POST
             </button>
             <small id="author" class="form-text text-muted">@{{author}}</small>
