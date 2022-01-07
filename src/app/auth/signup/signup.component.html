@@ -74,6 +74,9 @@
                 <div *ngIf="authService.loginOrEmailNotAvailable" class="alert alert-danger" role="alert">
                     The user already exists!
                 </div>
+                <div *ngIf="authService.registered" class="alert alert-success" role="alert">
+                    User registered successfully!
+                </div>
                 <button type="submit" [disabled]="!isSendButtonActivated || !f.valid"
                         class="btn btn-outline-success col-lg-3 mx-auto d-block mb-4 mt-3"> Register
                 </button>

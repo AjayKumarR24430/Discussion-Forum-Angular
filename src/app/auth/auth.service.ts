@@ -25,9 +25,10 @@ export class AuthService {
                 this.loginOrEmailNotAvailable = false;
                 console.log("User signed up!");
                 this.registered = true;
-                this.router.navigate(['posts-list']);
+                // this.router.navigate(['posts-list']);
             },
             (error) => {
+                
                 this.loginOrEmailNotAvailable = true;
                 this.registered = false;
                 console.log(error);
