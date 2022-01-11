@@ -1,25 +1,25 @@
 <div class="row mt-4">
-    <!-- <mat-spinner *ngIf="searchedPosts.length == 0">No results found!</mat-spinner> -->
     <div *ngIf="searchedPosts.length == 0">
     	No results found!
     </div>
     <div class="col-lg-12" *ngIf="searchedPosts.length > 0">
-        <ul class="list-group mb-5">
-            <li *ngFor="let post of searchedPosts" class="list-group-item clearfix" id="postsList">
+        <ul class="w-200 mb-6 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li *ngFor="let post of searchedPosts" class="py-4 px-4 w-full rounded-t-lg border-b border-gray-600 dark:border-gray-600" id="postsList">
                 <a
                     class="media mb-2 mt-2 ml-2 mr-2 mr-4"
                     [routerLink]="['/posts/', post.id]">
-                    <figure class="figure mb-0">
-                        <img
-                            style="margin-top: 10px; margin-bottom: 10px;"
-                            class="mr-4 rounded" width="600px"
+                    <figure class="relative cursor-pointer">
+                        <img *ngIf="post.imageUrl"
+                            class="rounded-lg shadow-xl hover:shadow-2xl w-7/12" 
                             src="{{ post.imageUrl }}"
                             alt="{{ post.title }}">
-                        <figcaption class="figure-caption text-center">{{ post.categories | categoriesFormat}}
+                        <figcaption *ngIf="post.imageUrl" class="absolute text-sm -mt-16 text-white px-4">{{ post.categories | categoriesFormat}}
+                        </figcaption>
+                        <figcaption *ngIf="!post.imageUrl" class="absolute text-sm -mt-5 -ml-4 px-4 text-yellow">{{ post.categories | categoriesFormat}}
                         </figcaption>
                     </figure>
                     <div class="media-body">
-                        <h4 class="mt-0">{{ post.title }}</h4>
+                        <h2 class="text-lg mt-2">{{ post.title }}</h2>
                         {{ post.content | shorterContent }}
                     </div>
                     <small class="text-muted">{{ post.dateTimeOfPost | timeAgo}}</small>

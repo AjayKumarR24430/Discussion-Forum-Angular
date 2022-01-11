@@ -1,58 +1,58 @@
-<div class="container-fluid h-100">
-    <div class="row mt-4 justify-content-center align-items-center h-auto">
-        <div class="col-lg-10">
-            <div *ngIf="!isUserSame" style="margin-bottom: 20px; color: darkred;"> 
+<div class="flex items-center justify-center min-h-screen">
+    <div class="px-8 py-6 mx-4 text-left bg-purple-100 w-8/12">
+        <!-- <div class="col-lg-10"> -->
+            <div *ngIf="!isUserSame"> 
                 You cannot edit this post, you are not the author!
             </div>
             <form (ngSubmit)="onEditPost(fileInput.files)" #f="ngForm">
-                <h2 class="text-center mb-4 alert alert-dark">Edit post</h2>
-                <div id="post-data">
-                    <div class="form-group">
-                        <label for="title" class="font-weight-bold">Title:</label>
-                        <input
-                            style="margin-top: 10px;"
-                            [disabled]="!isUserSame"                            
-                            type="text"
-                            class="form-control"
-                            id="title"
-                            required
-                            (ngModel)="[editedPost.title]"
-                            name="title">
+                <h2 class="text-center mb-4 ont-bold text-center alert alert-success">Edit Post</h2>
+                <div class="mt-4">
+                    <div>
+                        <label class="block" for="title">Title:</label>
+                        <input                        
+                        class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
+                        [disabled]="!isUserSame"                            
+                        type="text"                        
+                        id="title"
+                        required
+                        (ngModel)="[editedPost.title]"
+                        name="title"
+                        >
                     </div>
-                    <div class="form-group" style="margin-top: 10px;">
-                        <label for="content" class="font-weight-bold">Content:</label>
+                    <div>
+                        <label for="content" class="font-weight-bold block mt-4">Content:</label>
                         <textarea
-                            style="margin-top: 10px;"
                             [disabled]="!isUserSame"                            
-                            class="form-control"
+                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                             id="content"
                             rows="7"
                             required
                             (ngModel)="[editedPost.content]"
                             name="content"></textarea>
                     </div>
-                    <div class="form-group" style="margin-top: 10px;">
-                        <label for="imagePost" class="font-weight-light">Select an image file &nbsp;</label>
+                    <div>
+                        <label for="imagePost" class="font-weight-bold block mt-4">Select an image file &nbsp;</label>
                         <input type="file" class="form-control-file" id="imagePost" accept="image/*" #fileInput
                                (change)="submitBtn.disabled=false"
                                [disabled]="!isUserSame">
                     </div>
                     <div class="row mt-4">
-                        <button type="submit"
-                                class="btn btn-outline-primary btn-lg mx-auto d-block"
-                                [disabled]="f.pristine || isSend || isImageSelect || !isUserSame"
-                                #submitBtn
-                                style="margin-top: 10px;"
+                        <button  
+                            
+                            class="w-full h-12 px-6 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+                            [disabled]="f.pristine || isSend || isImageSelect || !isUserSame"
+                            #submitBtn
                         >Save
                         </button>
-                        <button class="btn btn-outline-danger btn-lg mx-auto d-block"
+                        <button 
+                        class="mt-4 w-full h-12 px-6 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800"
                                 [routerLink]="['/posts/',editedPost.id]"
-                                style="margin-top: 10px;">
+                                >
                             Cancel
                         </button>
                     </div>
                 </div>
             </form>
-        </div>
+        <!-- </div> -->
     </div>
 </div>

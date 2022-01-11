@@ -1,27 +1,25 @@
 <div class="row mt-4">
 	<div *ngIf="posts.length == 0">
 	No Posts
-<!--     <mat-spinner>
-    
-	</mat-spinner> -->
 	</div>
-    <div class="col-lg-12" *ngIf="posts.length > 0">
-        <ul class="list-group mb-5">
-            <li *ngFor="let post of posts" class="list-group-item clearfix" id="postsList">
+    <div class="col-start-1 col-end-7" *ngIf="posts.length > 0">
+        <ul class="w-200 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-800 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li *ngFor="let post of posts" class="py-4 px-4 w-full rounded-t-lg border-b border-gray-600 dark:border-gray-600" id="postsList">
                 <a
-                    class="media mb-2 mt-2 ml-2 mr-2 mr-4"
+                    class="mb-2 mt-2 ml-2 mr-2 mr-4"
                     [routerLink]="['/posts/', post.id]">
-                    <figure class="figure mb-0">
+                    <figure class="relative cursor-pointer">
                         <img *ngIf="post.imageUrl"
-                            style="margin-bottom: 20px; margin-top: 5px;"
-                            class="mr-4 rounded" width="600px"
+                            class="rounded-lg shadow-xl hover:shadow-2xl w-7/12" 
                             src="{{ post.imageUrl }}"
                             alt="{{ post.title }}">
-                        <figcaption class="figure-caption" style="margin-left: -10px;">{{ post.categories | categoriesFormat}}
+                        <figcaption *ngIf="post.imageUrl" class="absolute text-sm -mt-16 text-white px-4">{{ post.categories | categoriesFormat}}
+                        </figcaption>
+                        <figcaption *ngIf="!post.imageUrl" class="absolute text-sm -mt-5 -ml-4 px-4 text-yellow">{{ post.categories | categoriesFormat}}
                         </figcaption>
                     </figure>
                     <div class="media-body">
-                        <h4 class="mt-0">{{ post.title }}</h4>
+                        <h2 class="text-lg mt-2">{{ post.title }}</h2>
                         {{ post.content | shorterContent }}
                     </div>
                     <small class="text-muted">{{ post.dateTimeOfPost | timeAgo}}</small>
@@ -29,29 +27,57 @@
                 <div class="text-right mt-0"><span class="font-weight-light">Rating:</span> {{ post.ratingPoints }}</div>
             </li>
         </ul>
-        <nav style="margin-bottom: 30px"> 
-            <ul class="pagination justify-content-center align-items-center text-center">
-                <li class="page-item" [ngClass]="{active:currentPage == 1}"><a class="page-link"
-                                                                               (click)="onPageChange(1)">Beginning</a>
-                </li>
-                <li>
-                    <a class="page-link" href="#" aria-label="Previous" (click)="onPageChange(currentPage-1)">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li *ngFor="let page of createRange(totalPages)" class="page-item"
-                    [ngClass]='{active:currentPage === page}'><a class="page-link"
-                                                                 (click)="onPageChange(page)">{{page}}</a></li>
-                <li><a class="page-link" href="#" aria-label="Next" (click)="onPageChange(currentPage+1)">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next one</span>
-                </a></li>
-                <li class="page-item" [ngClass]="{active:currentPage == totalPages}"><a class="page-link"
-                                                                                        (click)="onPageChange(totalPages)">End</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+            <div *ngIf="posts.length>=10">
+              <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">1</span>
+                to
+                <span class="font-medium">10</span>
+                of
+                <span class="font-medium">{{posts.length}}</span>
+                results
+              </p>
+            </div>
+            <div *ngIf="posts.length < 10">
+              <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">1</span>
+                to
+                <span class="font-medium">{{posts.length}}</span>
+                of
+                <span class="font-medium">{{posts.length}}</span>
+                results
+              </p>
+            </div>
+            <div>
+              <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                  <span class="sr-only" (click)="onPageChange(currentPage-1)">Previous</span>
+                  <!-- Heroicon name: solid/chevron-left -->
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+
+                <p *ngFor="let page of createRange(totalPages)" class="page-item"
+                            [ngClass]='{active:currentPage === page}'>
+                    <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"
+                        (click)="onPageChange(page)">{{page}}</a></p>
+           
+                <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                (click)="onPageChange(currentPage+1)">
+                  <span class="sr-only" >Next</span>
+                  <!-- Heroicon name: solid/chevron-right -->
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </nav>
+            </div>
+        </div>
     </div>
+</div>
 
 </div>
