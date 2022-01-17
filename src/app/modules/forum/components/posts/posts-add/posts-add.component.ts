@@ -36,7 +36,11 @@ export class PostsAddComponent implements OnInit {
         let file: File = files[0];
         console.log(file);
         this.postService.savePost(newPost, file);
-        this.router.navigate(['/posts-list']);
+        this.router.navigate(['/posts-list'])
+         window.setTimeout(function(){window.location.reload()},2000)
+        //     .then(() => {
+        //         window.location.reload();
+        // });
     }
 
     private addCategories() {

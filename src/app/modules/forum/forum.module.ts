@@ -22,6 +22,7 @@ import {SigninComponent} from './components/auth/signin/signin.component';
 import {SearchResultComponent} from './components/posts/search-result/search-result.component';
 import {TimeAgoPipe} from "time-ago-pipe";
 import {CategoriesFormatPipe} from "../../shared/pipe/categories-format.pipe";
+import {MaterialModule} from "../../shared/material.module";
 
 
 @Pipe({
@@ -37,24 +38,25 @@ export class TimeAgoExtendsPipe extends TimeAgoPipe {}
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
   declarations: [
-  	  PostsComponent,
+  	PostsComponent,
 	  PostsListComponent,
 	  PostsAddComponent,
 	  ShorterContentPipe,
 	  ShorterNamePipe,
 	  PostDetailsComponent,
-      PostEditComponent,
-      CommentsComponent,
-      CommentAddComponent,
-      CommentsListComponent,
-      SignupComponent,
-      SigninComponent,
-      SearchResultComponent,
-      CategoriesFormatPipe,
-      TimeAgoExtendsPipe
+    PostEditComponent,
+    CommentsComponent,
+    CommentAddComponent,
+    CommentsListComponent,
+    SignupComponent,
+    SigninComponent,
+    SearchResultComponent,
+    CategoriesFormatPipe,
+    TimeAgoExtendsPipe
   ],
   providers: [ CommentService, SearchResultComponent
     

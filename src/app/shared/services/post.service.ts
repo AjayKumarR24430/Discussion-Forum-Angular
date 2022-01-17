@@ -17,6 +17,10 @@ export class PostService {
         return this.http.get('http://localhost:8080/posts/page/' + pageNumber);
     }
 
+    getAllPosts() {
+        return this.http.get('http://localhost:8080/posts');
+    }
+
     savePost(newPost: Post, file: File) {
         return this.http.post('http://localhost:8080/posts', newPost).subscribe(
             (response: Response) => {
@@ -24,7 +28,7 @@ export class PostService {
                 console.log(response);
                 this.uploadImage(file);
             }
-        );
+        )
     }
 
     getPostById(id: number) {

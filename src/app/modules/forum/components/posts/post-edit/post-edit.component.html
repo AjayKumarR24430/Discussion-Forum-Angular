@@ -4,7 +4,7 @@
             <div *ngIf="!isUserSame"> 
                 You cannot edit this post, you are not the author!
             </div>
-            <form (ngSubmit)="onEditPost(fileInput.files)" #f="ngForm">
+            <form (ngSubmit)="onEditPost()" #f="ngForm">
                 <h2 class="text-center mb-4 ont-bold text-center alert alert-success">Edit Post</h2>
                 <div class="mt-4">
                     <div>
@@ -30,12 +30,12 @@
                             (ngModel)="[editedPost.content]"
                             name="content"></textarea>
                     </div>
-                    <div>
+                   <!--  <div>
                         <label for="imagePost" class="font-weight-bold block mt-4">Select an image file &nbsp;</label>
                         <input type="file" class="form-control-file" id="imagePost" accept="image/*" #fileInput
                                (change)="submitBtn.disabled=false"
                                [disabled]="!isUserSame">
-                    </div>
+                    </div> -->
                     <div class="row mt-4">
                         <button  
                             

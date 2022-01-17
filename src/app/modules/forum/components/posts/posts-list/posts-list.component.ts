@@ -17,17 +17,30 @@ export class PostsListComponent implements OnInit {
     totalElements: number;
     totalPages: number;
     elementsPerPage = 10;
+    totalPosts: number;
 
     constructor(private postService: PostService, private authService: AuthService, private router: Router) {
     }
 
     ngOnInit() {
+        this.postService.getAllPosts()
+        .subscribe((totalposts: any[]) => {
+            this.totalPosts = totalposts.length;
+            console.log(this.totalPosts)
+        },
+        (error) => console.log(error));
+
         return this.postService.getPosts(this.currentPage)
             .subscribe(
                 (posts: any[]) => {
                     this.posts = posts;
                     this.totalElements = posts.length;
-                    this.totalPages = this.totalElements / this.elementsPerPage + 1;
+                    if(this.totalPosts <= 10){
+                        this.totalPages = 1;
+                    }
+                    else{
+                        this.totalPages = this.totalElements / this.elementsPerPage + 1;
+                    }
                     console.log(this.posts);
                     console.log("Total pages: " + this.totalPages);
                 },
@@ -42,11 +55,13 @@ export class PostsListComponent implements OnInit {
         else if (pageNumber > this.totalPages) {
             pageNumber = this.totalPages;
         }
+        console.log(pageNumber);
         return this.postService.getPosts(pageNumber)
             .subscribe(
                 (posts: any[]) => {
                     this.posts = posts;
                     this.currentPage = pageNumber;
+                    console.log(this.currentPage);
                     window.scrollTo(0, 0);
                 },
                 (error) => console.log(error)

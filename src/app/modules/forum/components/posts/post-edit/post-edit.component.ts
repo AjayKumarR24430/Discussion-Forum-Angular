@@ -58,9 +58,9 @@ export class PostEditComponent implements OnInit {
         );
     }
 
-    onEditPost(files: any) {
-        let file: File = files[0];
-        console.log(file);
+    onEditPost() {
+        // let file: File = files[0];
+        // console.log(file);
         const value = this.addPostForm.value;
         console.log(value);
         const updatedPost = {} as Post;
@@ -74,15 +74,19 @@ export class PostEditComponent implements OnInit {
         updatedPost.user = this.currentUser;
 
         console.log('updated post:' + updatedPost);
-        console.log('file: ' + file);
-        if (file == null) {
+        // console.log('file: ' + file);
+        // if (file == null) {
             console.log("file is empty or undefined");
             this.postService.updatePost(updatedPost, null);
-        }
-        else {
-            this.postService.updatePost(updatedPost, file);
-        }
+        // }
+        // else {
+        //     this.postService.updatePost(updatedPost, file);
+        // }
         this.isSend = true;
-        this.router.navigate(['posts-list']);
+        this.router.navigate(['posts-list'])
+        .then(() => {
+            window.location.reload();
+        });
+
     }
 }

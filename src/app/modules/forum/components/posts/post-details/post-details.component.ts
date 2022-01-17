@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PostService} from "../../../../../shared/services/post.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Post} from "../../../model/post.model";
 import {AuthService} from "../../../../../shared/services/auth.service";
 import {UserService} from "../../../../../shared/services/user.service";
@@ -17,7 +17,7 @@ export class PostDetailsComponent implements OnInit {
     author = "";
     isUserSame: boolean;
 
-    constructor(private postService: PostService, private router: ActivatedRoute, public authService: AuthService, private userService: UserService) {
+    constructor(private postService: PostService, private router: ActivatedRoute, public authService: AuthService, private userService: UserService, private navrouter: Router) {
     }
 
     ngOnInit() {
@@ -54,5 +54,9 @@ export class PostDetailsComponent implements OnInit {
 
     onDeletePost() {
         this.postService.deletePost(this.id);
+        this.navrouter.navigate(['/posts-list'])
+        .then(() => {
+            window.location.reload();
+        });
     }
 }
